@@ -15,7 +15,7 @@ def speak(text):
     engine.say(text)
     engine.runAndWait()
 
-NEWS_API_KEY = "a999b81ab9cb4f2480687c4c3324c838"
+NEWS_API_KEY = ""
 OPENAI_API_KEY = ''
 
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
@@ -43,14 +43,12 @@ def cam():
     try:
         speak("Taking a photo now")
         
-        # Initialize camera
         cap = cv2.VideoCapture(0)
         
         if not cap.isOpened():
             speak("Could not access camera")
             return
         
-        # Capture frame
         ret, frame = cap.read()
         cap.release()
         
@@ -58,7 +56,6 @@ def cam():
             speak("Failed to capture image")
             return
         
-        # Save the image temporarily
         image_path = "captured_photo.jpg"
         cv2.imwrite(image_path, frame)
         
